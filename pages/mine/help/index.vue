@@ -64,7 +64,15 @@
 
 <style lang="scss" scoped>
   page {
-    background-color: #f8f8f8;
+    background:
+        radial-gradient(#51c4c750 5px, transparent 5px),
+        radial-gradient(#51c4c720 5px, transparent 5px),
+        linear-gradient(#f5f6f7 3px, transparent 0),
+        linear-gradient(45deg, transparent 74px, transparent 75px, #51c4c730 75px, #51c4c730 76px, transparent 77px, transparent 109px),
+        linear-gradient(-45deg, transparent 75px, transparent 76px, #51c4c730 76px, #51c4c730 77px, transparent 78px, transparent 109px),
+        #f5f6f7;
+        background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
+        background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
   }
 
   .help-container {
@@ -84,6 +92,7 @@
     box-shadow: 0px 0px 10rpx rgba(193, 193, 193, 0.2);
     border-radius: 16rpx;
     margin-top: 10rpx;
+    border: #51c4c7 solid 5rpx;
   }
 
   .line {

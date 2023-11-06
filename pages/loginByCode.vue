@@ -1,6 +1,7 @@
 <template>
   <view class="normal-login-container">
     <BackButton :backTo="'/pages/login'"></BackButton>
+    <uni-transition mode-class="zoom-in" :show="true" :duration="700">
     <view class="logo-content align-center justify-center flex">
       <image style="width: 200rpx;height: 200rpx;" :src="globalConfig.appInfo.logo" mode="widthFix">
       </image>
@@ -28,7 +29,7 @@
         <text @click="handlePrivacy" class="rc-color">《隐私协议》</text>
       </view>
     </view>
-     
+    </uni-transition>
   </view>
 </template>
 
@@ -96,7 +97,15 @@ import { getLoginCode } from '@/api/login.js'
 
 <style lang="scss">
   page {
-    background-color: #ffffff;
+    background:
+            radial-gradient(#51c4c750 5px, transparent 5px),
+            radial-gradient(#51c4c720 5px, transparent 5px),
+            linear-gradient(#f5f6f7 3px, transparent 0),
+            linear-gradient(45deg, transparent 74px, transparent 75px, #51c4c730 75px, #51c4c730 76px, transparent 77px, transparent 109px),
+            linear-gradient(-45deg, transparent 75px, transparent 76px, #51c4c730 76px, #51c4c730 77px, transparent 78px, transparent 109px),
+            #f5f6f7;
+            background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
+            background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
   }
 
   .normal-login-container {
@@ -124,7 +133,17 @@ import { getLoginCode } from '@/api/login.js'
         background-color: #f5f6f7;
         height: 45px;
         border-radius: 20px;
-
+        animation: glow 800ms ease-out infinite alternate;
+        @keyframes glow {
+            0% {
+                border-color: #51c4c710;
+                box-shadow: 0 0 1px #51c4c710, inset 0 0 1px #51c4c710, 0 1px 0 #51c4c710;
+            }
+            100% {
+                border-color: #51c4c750;
+                box-shadow: 0 0 4px #51c4c750, inset 0 0 1px #51c4c750, 0 4px 0 #51c4c750;
+            }
+        }
         .icon {
           font-size: 38rpx;
           margin-left: 10px;

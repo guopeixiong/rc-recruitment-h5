@@ -23,7 +23,7 @@
     }, {
         "path": "pages/mine/index",
         "style": {
-            "navigationBarTitleText": "我的"
+            "navigationBarTitleText": "个人中心"
         }
     }, {
         "path": "pages/mine/avatar/index",
@@ -44,11 +44,6 @@
         "path": "pages/mine/pwd/index",
         "style": {
             "navigationBarTitleText": "修改密码"
-        }
-    }, {
-        "path": "pages/mine/setting/index",
-        "style": {
-            "navigationBarTitleText": "应用设置"
         }
     }, {
         "path": "pages/mine/help/index",
@@ -80,12 +75,25 @@
         "style": {
             "navigationBarTitleText": "忘记密码"
         }
+    } ,{
+        "path" : "pages/mine/signup/signUpRecord",
+        "style": {
+            "navigationBarTitleText": "报名记录"
+        }
+    },{
+        "path" : "pages/mine/signup/signUpDetail",
+        "style": {
+            "navigationBarTitleText": "报名详情"
+        }
     }],
     "tabBar": {
         "color": "#707070",
         "selectedColor": "#51c4c7",
-        "borderStyle": "white",
+        "borderStyle": "black",
         "backgroundColor": "#ffffff",
+        "fontSize": "25rpx",
+        "iconWidth": "50rpx",
+        "height": "110rpx",
         "list": [{
             "pagePath": "pages/index",
             "iconPath": "static/images/tabbar/home.png",

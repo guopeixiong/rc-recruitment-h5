@@ -1,20 +1,7 @@
 <template>
   <view>
   <BackButton :backTo="'/pages/mine/index'"></BackButton>
-  <!-- <view class="pwd-retrieve-container">
-    <uni-forms ref="form" :value="user" labelWidth="80px">
-      <uni-forms-item name="oldPassword" label="旧密码">
-        <uni-easyinput type="password" v-model="user.oldPassword" placeholder="请输入旧密码" />
-      </uni-forms-item>
-      <uni-forms-item name="newPassword" label="新密码">
-        <uni-easyinput type="password" v-model="user.newPassword" placeholder="请输入新密码" />
-      </uni-forms-item>
-      <uni-forms-item name="confirmPassword" label="确认密码">
-        <uni-easyinput type="password" v-model="user.confirmPassword" placeholder="请确认新密码" />
-      </uni-forms-item>
-      <button type="primary" @click="submit" style="background-color: #51c4c7;">提交</button>
-    </uni-forms>
-  </view> -->
+  <uni-transition mode-class="zoom-in" :show="true" :duration="700">
   <view class="login-form-content">
       <view class="input-item flex align-center">
           <view class="iconfont icon-youxiang icon"></view>
@@ -41,6 +28,7 @@
           <button @click="submit" class="login-btn cu-btn block bg-blue lg round">提交</button>
       </view>
   </view>
+  </uni-transition>
   </view>
 </template>
 
@@ -94,7 +82,15 @@
 
 <style lang="scss">
   page {
-    background-color: #ffffff;
+    background:
+                radial-gradient(#51c4c720 5px, transparent 5px),
+                radial-gradient(#51c4c720 5px, transparent 5px),
+                linear-gradient(#f5f6f7 3px, transparent 0),
+                linear-gradient(45deg, transparent 74px, transparent 75px, #51c4c730 75px, #51c4c730 76px, transparent 77px, transparent 109px),
+                linear-gradient(-45deg, transparent 75px, transparent 76px, #51c4c730 76px, #51c4c730 77px, transparent 78px, transparent 109px),
+                #f5f6f7;
+                background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
+                background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
   }
   
   .login-form-content {
@@ -108,7 +104,17 @@
       background-color: #f5f6f7;
       height: 45px;
       border-radius: 20px;
-    
+      animation: glow 800ms ease-out infinite alternate;
+      @keyframes glow {
+          0% {
+              border-color: #51c4c710;
+              box-shadow: 0 0 1px #51c4c710, inset 0 0 1px #51c4c710, 0 1px 0 #51c4c710;
+          }
+          100% {
+              border-color: #51c4c750;
+              box-shadow: 0 0 4px #51c4c750, inset 0 0 1px #51c4c750, 0 4px 0 #51c4c750;
+          }
+      }
       .icon {
         font-size: 38rpx;
         margin-left: 10px;

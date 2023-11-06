@@ -1,6 +1,7 @@
 <template>
   <view class="mine-container" :style="{height: `${windowHeight}px`}">
     <!--顶部个人信息栏-->
+    <uni-transition mode-class="zoom-in" :show="true" :duration="700">
     <view class="header-section">
       <view class="flex padding justify-between">
         <view class="flex align-center">
@@ -19,34 +20,37 @@
             </view>
           </view>
         </view>
-        <view @click="handleToInfo" class="flex align-center" v-if="name">
-          <text style="font-size:30rpx;">个人信息</text>
-          <view class="iconfont icon-xiangyou1"></view>
-        </view>
       </view>
     </view>
-
+    </uni-transition>
+    
     <view class="content-section">
+    <uni-transition mode-class="zoom-in" :show="true" :duration="700">
       <view class="mine-actions grid col-3 text-center">
-        <view class="action-item" @click="handleJiaoLiuQun">
+        <view class="action-item" @click="handleSignUpRecord">
           <uni-icons type="compose" size="30" color="#51c4c7"></uni-icons>
           <text class="text">报名记录</text>
         </view>
         <view class="action-item" @click="handleBuilding">
-          <uni-icons type="notification" size="30" color="#51c4c7"></uni-icons>
-          <text class="text">通知</text>
+          <uni-badge class="uni-badge-left-margin" :text="2" absolute="rightTop">
+            <uni-icons type="notification" size="30" color="#51c4c7"></uni-icons>
+            <text class="text">通知</text>
+          </uni-badge>
         </view>
         <view class="action-item" @click="handleBuilding">
-          <uni-icons type="paperplane" size="30" color="#51c4c7"></uni-icons>
-          <text class="text">咨询</text>
+          <uni-badge class="uni-badge-left-margin" :text="2" absolute="rightTop">
+            <uni-icons type="paperplane" size="30" color="#51c4c7"></uni-icons>
+            <text class="text">咨询</text>
+          </uni-badge>
         </view>
       </view>
-
-      <view class="menu-list" style="font-size: 30rpx;">
-        <view v-if="name" class="list-cell list-cell-arrow" @click="handleToEditInfo">
+    </uni-transition>
+    <uni-transition mode-class="zoom-in" :show="true" :duration="700">
+      <view class="menu-list menu-container" style="font-size: 30rpx;">
+        <view v-if="name" class="list-cell list-cell-arrow" @click="handleToInfo">
           <view class="menu-item-box">
             <view class="iconfont icon-zhanghu icon"></view>
-            <view class="item_content">编辑资料</view>
+            <view class="item_content">个人信息</view>
           </view>
         </view>
         <view class="list-cell list-cell-arrow" @click="handleHelp">
@@ -74,6 +78,7 @@
           </view>
         </view>
       </view>
+    </uni-transition>
     </view>
   </view>
 </template>
@@ -100,9 +105,6 @@
       handleToInfo() {
         this.$tab.navigateTo('/pages/mine/info/index')
       },
-      handleToEditInfo() {
-        this.$tab.navigateTo('/pages/mine/info/edit')
-      },
       handleToSetting() {
         this.$tab.navigateTo('/pages/mine/setting/index')
       },
@@ -128,8 +130,8 @@
       handleAbout() {
         this.$tab.navigateTo('/pages/mine/about/index')
       },
-      handleJiaoLiuQun() {
-        this.$modal.showToast('QQ群：①133713780、②146013835')
+      handleSignUpRecord() {
+        this.$tab.navigateTo('/pages/mine/signup/signUpRecord')
       },
       handleBuilding() {
         this.$modal.showToast('模块建设中~')
@@ -140,13 +142,20 @@
 
 <style lang="scss">
   page {
-    background-color: #f5f6f7;
+    background:
+            radial-gradient(#51c4c750 5px, transparent 5px),
+            radial-gradient(#51c4c720 5px, transparent 5px),
+            linear-gradient(#f5f6f7 3px, transparent 0),
+            linear-gradient(45deg, transparent 74px, transparent 75px, #51c4c730 75px, #51c4c730 76px, transparent 77px, transparent 109px),
+            linear-gradient(-45deg, transparent 75px, transparent 76px, #51c4c730 76px, #51c4c730 77px, transparent 78px, transparent 109px),
+            #f5f6f7;
+            background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
+            background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
   }
 
   .mine-container {
     width: 100%;
     height: 100%;
-
 
     .header-section {
       padding: 15px 15px 45px 15px;
@@ -186,7 +195,7 @@
         padding-top: 20rpx;
         border-radius: 8px;
         background-color: white;
-
+        box-shadow: 4rpx 4rpx 4rpx 4rpx #51c4c750;
         .action-item {
           .icon {
             font-size: 28px;
@@ -198,6 +207,12 @@
             color: #51c4c7;
           }
         }
+      }
+      .menu-container {
+          border-radius: 30rpx;
+          padding: 0 20rpx;
+          box-shadow: 4rpx 4rpx 4rpx 4rpx #51c4c750;
+          background-color: #fff;
       }
     }
   }

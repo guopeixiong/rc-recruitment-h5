@@ -1,23 +1,7 @@
 <template>
   <view class="container">
-    <BackButton :back-to="'/pages/mine/index'"></BackButton>
-    <!-- <view class="example">
-      <uni-forms ref="form" :model="user" labelWidth="80px">
-        <uni-forms-item label="用户昵称" name="nickName">
-          <uni-easyinput v-model="user.nickName" placeholder="请输入昵称" />
-        </uni-forms-item>
-        <uni-forms-item label="手机号码" name="phonenumber">
-          <uni-easyinput v-model="user.phonenumber" placeholder="请输入手机号码" />
-        </uni-forms-item>
-        <uni-forms-item label="邮箱" name="email">
-          <uni-easyinput v-model="user.email" placeholder="请输入邮箱" />
-        </uni-forms-item>
-        <uni-forms-item label="性别" name="sex" required>
-          <uni-data-checkbox v-model="user.sex" :localdata="sexs" />
-        </uni-forms-item>
-      </uni-forms>
-      <button type="primary" @click="submit" class="round" style="background-color: #51c4c7;">保存</button>
-    </view> -->
+    <BackButton :back-to="'/pages/mine/info/index'"></BackButton>
+    <uni-transition mode-class="zoom-in" :show="true" :duration="700">
     <view class="form-content">
       <view class="input-item flex align-center">
         <view class="iconfont icon-nicheng icon"></view>
@@ -43,22 +27,23 @@
         <view class="iconfont icon-xingbie icon"></view>
         <radio-group @change="changeSex">
             <label class="radio_item">男</label>
-            <radio color="#51c4c7" class="radio_item" value=1 :checked="user.sex === 1" />
+            <radio color="#51c4c770" class="radio_item" value=1 :checked="user.sex === 1" />
             <label class="radio_item">女</label>
-            <radio color="#51c4c7" class="radio_item" value=0 :checked="user.sex === 0"/>
+            <radio color="#51c4c770" class="radio_item" value=0 :checked="user.sex === 0"/>
         </radio-group>
       </view>
       <view class="action-btn">
         <button @click="submit" class="login-btn cu-btn block bg-blue lg round">保存</button>
       </view>
     </view>
+    </uni-transition>
   </view>
 </template>
 
 <script>
   import { getUserProfile } from "@/api/system/user"
   import { updateUserProfile } from "@/api/system/user"
-import user from "../../../store/modules/user"
+  import user from "../../../store/modules/user"
 
   export default {
     data() {
@@ -109,7 +94,7 @@ import user from "../../../store/modules/user"
         } else {
             updateUserProfile(this.user).then(response => {
                 this.$store.dispatch('GetInfo')
-                this.$modal.msgSuccess("修改成功")
+                this.$tab.reLaunch('/pages/mine/info/index')
           })
         }
       },
@@ -122,7 +107,15 @@ import user from "../../../store/modules/user"
 
 <style lang="scss">
   page {
-    background-color: #ffffff;
+    background:
+        radial-gradient(#51c4c720 5px, transparent 5px),
+        radial-gradient(#51c4c720 5px, transparent 5px),
+        linear-gradient(#f5f6f7 3px, transparent 0),
+        linear-gradient(45deg, transparent 74px, transparent 75px, #51c4c730 75px, #51c4c730 76px, transparent 77px, transparent 109px),
+        linear-gradient(-45deg, transparent 75px, transparent 76px, #51c4c730 76px, #51c4c730 77px, transparent 78px, transparent 109px),
+        #f5f6f7;
+        background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
+        background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
   }
   
   .form-content {
@@ -133,10 +126,20 @@ import user from "../../../store/modules/user"
   
     .input-item {
       margin: 20px auto;
-      background-color: #f5f6f7;
+      background-color: #fff;
       height: 45px;
       border-radius: 20px;
-  
+      animation: glow 800ms ease-out infinite alternate;
+      @keyframes glow {
+          0% {
+              border-color: #51c4c710;
+              box-shadow: 0 0 1px #51c4c710, inset 0 0 1px #51c4c710, 0 1px 0 #51c4c710;
+          }
+          100% {
+              border-color: #51c4c750;
+              box-shadow: 0 0 4px #51c4c750, inset 0 0 1px #51c4c750, 0 4px 0 #51c4c750;
+          }
+      }
       .icon {
         font-size: 38rpx;
         margin-left: 10px;

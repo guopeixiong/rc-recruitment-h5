@@ -38,7 +38,7 @@ const request = config => {
         const code = res.data.code || 200
         const msg = errorCode[code] || res.data.msg || errorCode['default']
         if (code === 401) {
-          showConfirm('登录状态已过期，您可以继续留在该页面，或者重新登录?').then(res => {
+          showConfirm('当前状态未登录，请前往登录页面登录').then(res => {
             if (res.confirm) {
               store.dispatch('LogOut').then(res => {
                 uni.reLaunch({ url: '/pages/login' })

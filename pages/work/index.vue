@@ -1,9 +1,13 @@
 <template>
   <view class="work-container">
+    <scroll-view :scroll-y="true">
     <view class="img-containeralign-center justify-center flex">
-        <image style="width: 320rpx; height: 180rpx;" src="../../static/BaoMingBiao.jpg"></image>
+        <uni-transition mode-class="zoom-in" :show="true" :duration="700">
+        <image style="width: 320rpx; height: 180rpx;" src="../../static/BaoMingBiao.png"></image>
+        </uni-transition>
     </view>
     <view class="content-container">
+    <uni-transition mode-class="zoom-in" :show="true" :duration="700">
         <view class="question-container" v-for="(item, index) in items">
             <view class="question">{{index + 1}}.{{item.content}}<text v-if="item.isRequire === 1" style="color: red; font-size: 40rpx; margin-left: 10rpx;">*</text></view>
             <view v-if="item.type === 0">
@@ -26,8 +30,12 @@
                 </checkbox-group>
             </view>
         </view>
+    </uni-transition>
     </view>
+    <uni-transition mode-class="zoom-in" :show="true" :duration="700">
     <button @click="submit" class="submit-btn cu-btn block bg-blue lg round">提交</button>
+    </uni-transition>
+    </scroll-view>
   </view>
 </template>
 
@@ -71,7 +79,6 @@ import { getSignUpForm, submitForm } from '@/api/work/index.js'
         }))
         submitForm(data).then(res => {
             this.$modal.msgSuccess('报名成功, 可前往个人中心查看记录')
-            this.getForm()
         })
       },
       getForm() {
@@ -111,7 +118,15 @@ import { getSignUpForm, submitForm } from '@/api/work/index.js'
 
 <style lang="scss">
   page {
-    background-color: #f5f6f7;
+    background:
+        radial-gradient(#51c4c720 5px, transparent 5px),
+        radial-gradient(#51c4c720 5px, transparent 5px),
+        linear-gradient(#f5f6f7 3px, transparent 0),
+        linear-gradient(45deg, transparent 74px, transparent 75px, #51c4c730 75px, #51c4c730 76px, transparent 77px, transparent 109px),
+        linear-gradient(-45deg, transparent 75px, transparent 76px, #51c4c730 76px, #51c4c730 77px, transparent 78px, transparent 109px),
+        #f5f6f7;
+        background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
+        background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
   }
   
   .img-container {
@@ -119,17 +134,18 @@ import { getSignUpForm, submitForm } from '@/api/work/index.js'
   }
   
   .content-container {
-    margin: 20rpx;
-    padding: 20rpx;
+    margin: 30rpx;
+    padding: 40rpx;
+    padding-top: 0;
     background-color: #ffffff;
     border-radius: 30rpx;
-    border: #51c4c750 solid 5rpx;
+    border: #51c4c750 solid 4rpx;
     .question-container {
       .question{
         color: #515151;
         font-size: 35rpx;
         margin-left: 10rpx;
-        margin-top: 20rpx;
+        margin-top: 40rpx;
       } 
       .question-answer{
         width: 100%;
@@ -137,8 +153,18 @@ import { getSignUpForm, submitForm } from '@/api/work/index.js'
         padding: 20rpx;
         font-size: 30rpx;
         margin-top: 10rpx;
-        background-color: #f5f6f7;
-        border: #51c4c750 solid 2rpx;
+        background-color: #33333305;
+        animation: glow 800ms ease-out infinite alternate;
+        @keyframes glow {
+            0% {
+                border-color: #51c4c710;
+                box-shadow: 0 0 1px #51c4c710, inset 0 0 1px #51c4c710, 0 1px 0 #51c4c710;
+            }
+            100% {
+                border-color: #51c4c750;
+                box-shadow: 0 0 4px #51c4c750, inset 0 0 1px #51c4c750, 0 4px 0 #51c4c750;
+            }
+        }
         .question-option {
             margin-top: 15rpx;
         }
@@ -146,7 +172,9 @@ import { getSignUpForm, submitForm } from '@/api/work/index.js'
     }
   }
   .submit-btn {
-    margin: 50rpx 20rpx;
+    margin: 0 30rpx;
+    margin-top: 50rpx;
+    margin-bottom: 180rpx;
     height: 80rpx;
     background-color: #51c4c7;
   }
