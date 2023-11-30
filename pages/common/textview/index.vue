@@ -1,6 +1,6 @@
 <template>
   <view>
-    <BackButton :backTo="'/pages/mine/help/index'"></BackButton>
+    <BackButton></BackButton>
     <uni-card class="view-title" :title="title">
       <text class="uni-body view-content">{{ content }}</text>
     </uni-card>

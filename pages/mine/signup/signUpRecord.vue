@@ -1,6 +1,6 @@
 <template>
     <view>
-        <BackButton :back-to="'/pages/mine/index'"></BackButton>
+        <BackButton></BackButton>
         <uni-transition mode-class="zoom-in" :show="true" :duration="700">
         <view class="no-data" v-if="record.length <= 0">
             <image src="../../../static/data_empty.png"></image>
@@ -105,6 +105,7 @@ import { getSignUpRecord } from '@/api/signupRecord/index.js'
         color: #33333350;
         font-size: 30rpx;
         margin: auto;
+        margin-top: 300rpx;
         image {
             width: 400rpx;
             height: 400rpx;

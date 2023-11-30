@@ -1,15 +1,19 @@
 <template>
   <view class="work-container">
     <scroll-view :scroll-y="true">
-    <view class="img-containeralign-center justify-center flex">
+      <view class="no-data" v-if="items.length <= 0">
+        <image src="../../static/data_empty.png"></image>
+        <view><text>暂无报名表数据</text></view>
+      </view>
+    <view class="img-containeralign-center justify-center flex" v-if="items.length > 0">
         <uni-transition mode-class="zoom-in" :show="true" :duration="700">
         <image style="width: 320rpx; height: 180rpx;" src="../../static/BaoMingBiao.png"></image>
         </uni-transition>
     </view>
-    <view class="content-container">
+    <view class="content-container" v-if="items.length > 0">
     <uni-transition mode-class="zoom-in" :show="true" :duration="700">
         <view class="question-container" v-for="(item, index) in items">
-            <view class="question">{{index + 1}}.{{item.content}}<text v-if="item.isRequire === 1" style="color: red; font-size: 40rpx; margin-left: 10rpx;">*</text></view>
+            <view class="question">{{index + 1}}.{{item.content}}<text v-if="item.isRequire === 1" style="color: red; font-size: 40rpx; margin-left: 10rpx;">*</text>{{item.type === 2 ? '（可多选）' : ''}}</view>
             <view v-if="item.type === 0">
                 <textarea @input="handleTextInput($event, index)" class="question-answer" placeholder="请输入您的回答" auto-height=""></textarea>
             </view>
@@ -33,7 +37,7 @@
     </uni-transition>
     </view>
     <uni-transition mode-class="zoom-in" :show="true" :duration="700">
-    <button @click="submit" class="submit-btn cu-btn block bg-blue lg round">提交</button>
+    <button @click="submit" class="submit-btn cu-btn block bg-blue lg round" v-if="items.length > 0">提交</button>
     </uni-transition>
     </scroll-view>
   </view>
@@ -59,7 +63,7 @@ import { getSignUpForm, submitForm } from '@/api/work/index.js'
         }
         this.items.forEach(e => {
             if (e.type == 2) {
-                if (e.answer.length > 0) {
+                if (Array.isArray(e.answer) && e.answer.length > 0) {
                     let tempAnswer = ''
                     e.answer.forEach(o => {
                         tempAnswer = tempAnswer + o + ','
@@ -132,7 +136,17 @@ import { getSignUpForm, submitForm } from '@/api/work/index.js'
   .img-container {
     width: 100%;
   }
-  
+  .no-data {
+    text-align: center;
+    color: #33333350;
+    font-size: 30rpx;
+    margin: auto;
+    margin-top: 300rpx;
+    image {
+      width: 400rpx;
+      height: 400rpx;
+    }
+  }
   .content-container {
     margin: 30rpx;
     padding: 40rpx;

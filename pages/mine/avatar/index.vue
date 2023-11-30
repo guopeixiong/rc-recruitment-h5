@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-        <BackButton :backTo="'/pages/mine/index'"></BackButton>
+        <BackButton></BackButton>
 		<view class="page-body uni-content-info">
 			<view class='cropper-content'>
 				<view v-if="isShowImg" class="uni-corpper" :style="'width:'+cropperInitW+'px;height:'+cropperInitH+'px;background:#000'">

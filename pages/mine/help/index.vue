@@ -1,125 +1,55 @@
 <template>
-  <view class="help-container">
-    <BackButton :backTo="'/pages/mine/index'"></BackButton>
-    <view v-for="(item, findex) in list" :key="findex" :title="item.title" class="list-title">
-      <view class="text-title">
-        <view :class="item.icon"></view>{{ item.title }}
-      </view>
-      <view class="childList">
-        <view v-for="(child, zindex) in item.childList" :key="zindex" class="question" hover-class="hover"
-          @click="handleText(child)">
-          <view class="text-item">{{ child.title }}</view>
-          <view class="line" v-if="zindex !== item.childList.length - 1"></view>
+    <view>
+        <BackButton></BackButton>
+        <view class="no-data" v-if="data.length <= 0">
+            <image src="../../../static/data_empty.png"></image>
+            <view><text>暂无报名表数据</text></view>
         </view>
-      </view>
+        <uni-card :title="item.question" v-for="item in data">
+            <text>{{item.answer}}</text>
+        </uni-card>
     </view>
-  </view>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        list: [{
-            icon: '',
-            title: '若依问题',
-            childList: [{
-              title: '若依开源吗？',
-              content: '开源'
-            }, {
-              title: '若依可以商用吗？',
-              content: '可以'
-            }, {
-              title: '若依官网地址多少？',
-              content: 'http://ruoyi.vip'
-            }, {
-              title: '若依文档地址多少？',
-              content: 'http://doc.ruoyi.vip'
-            }]
-          },
-          {
-            icon: '',
-            title: '其他问题',
-            childList: [{
-              title: '如何退出登录？',
-              content: '请点击[我的] - [应用设置] - [退出登录]即可退出登录',
-            }, {
-              title: '如何修改用户头像？',
-              content: '请点击[我的] - [选择头像] - [点击提交]即可更换用户头像',
-            }, {
-              title: '如何修改登录密码？',
-              content: '请点击[我的] - [应用设置] - [修改密码]即可修改登录密码',
-            }]
-          }
-        ]
-      }
-    },
-    methods: {
-      handleText(item) {
-        this.$tab.navigateTo(`/pages/common/textview/index?title=${item.title}&content=${item.content}`)
-      }
+    import {
+        getCommonQa
+    } from '@/api/common.js'
+    export default {
+        data() {
+            return {
+                data: []
+            }
+        },
+        created() {
+            getCommonQa().then(res => {
+                this.data = res.data
+            })
+        }
     }
-  }
 </script>
 
 <style lang="scss" scoped>
-  page {
-    background:
-        radial-gradient(#51c4c750 5px, transparent 5px),
-        radial-gradient(#51c4c720 5px, transparent 5px),
-        linear-gradient(#f5f6f7 3px, transparent 0),
-        linear-gradient(45deg, transparent 74px, transparent 75px, #51c4c730 75px, #51c4c730 76px, transparent 77px, transparent 109px),
-        linear-gradient(-45deg, transparent 75px, transparent 76px, #51c4c730 76px, #51c4c730 77px, transparent 78px, transparent 109px),
-        #f5f6f7;
-        background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
+    page {
+        background:
+            radial-gradient(#51c4c750 5px, transparent 5px),
+            radial-gradient(#51c4c720 5px, transparent 5px),
+            linear-gradient(#f5f6f7 3px, transparent 0),
+            linear-gradient(45deg, transparent 74px, transparent 75px, #51c4c730 75px, #51c4c730 76px, transparent 77px, transparent 109px),
+            linear-gradient(-45deg, transparent 75px, transparent 76px, #51c4c730 76px, #51c4c730 77px, transparent 78px, transparent 109px),
+            #f5f6f7;
+        background-size: 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px;
         background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
-  }
-
-  .help-container {
-    margin-bottom: 100rpx;
-    padding: 30rpx;
-    padding-top: 0;
-    padding-left: 0;
-  }
-
-  .list-title {
-    padding-left: 30rpx;
-    margin-bottom: 30rpx;
-  }
-
-  .childList {
-    background: #ffffff;
-    box-shadow: 0px 0px 10rpx rgba(193, 193, 193, 0.2);
-    border-radius: 16rpx;
-    margin-top: 10rpx;
-    border: #51c4c7 solid 5rpx;
-  }
-
-  .line {
-    width: 100%;
-    height: 1rpx;
-    background-color: #F5F5F5;
-  }
-
-  .text-title {
-    color: #303133;
-    font-size: 32rpx;
-    font-weight: bold;
-    margin-left: 10rpx;
-
-    .iconfont {
-      font-size: 16px;
-      margin-right: 10rpx;
     }
-  }
-
-  .text-item {
-    font-size: 28rpx;
-    padding: 24rpx;
-  }
-
-  .question {
-    color: #606266;
-    font-size: 28rpx;
-  }
+    .no-data {
+      text-align: center;
+      color: #33333350;
+      font-size: 30rpx;
+      margin: auto;
+      margin-top: 300rpx;
+      image {
+        width: 400rpx;
+        height: 400rpx;
+      }
+    }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <view class="about-container">
-    <BackButton :backTo="'/pages/mine/index'"></BackButton>
+    <BackButton></BackButton>
     <uni-transition mode-class="zoom-in" :show="true" :duration="700">
     <view class="header-section text-center">
       <image style="width: 200rpx;height: 200rpx;" src="/static/logo.png" mode="widthFix">

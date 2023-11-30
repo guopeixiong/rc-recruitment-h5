@@ -1,6 +1,6 @@
 <template>
   <view class="container">
-    <BackButton :back-to="'/pages/mine/info/index'"></BackButton>
+    <BackButton></BackButton>
     <uni-transition mode-class="zoom-in" :show="true" :duration="700">
     <view class="form-content">
       <view class="input-item flex align-center">

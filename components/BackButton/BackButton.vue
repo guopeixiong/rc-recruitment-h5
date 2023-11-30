@@ -12,12 +12,16 @@ import { baseUrl } from '../../config';
         props: {
           backTo: {
               type: String,
-              default: '/pages/index'
+              default: ''
           }  
         },
         methods: {
             goBack() {
-               uni.reLaunch({url: this.backTo});
+                if (this.backTo === '') {
+                    this.$tab.navigateBack()
+                } else {
+                    this.$tab.reLaunch('/pages/index')
+                }
             }
         }
     }
