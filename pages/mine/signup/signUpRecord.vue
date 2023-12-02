@@ -1,6 +1,5 @@
 <template>
     <view>
-        <BackButton></BackButton>
         <uni-transition mode-class="zoom-in" :show="true" :duration="700">
         <view class="no-data" v-if="record.length <= 0">
             <image src="../../../static/data_empty.png"></image>

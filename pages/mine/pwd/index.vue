@@ -1,6 +1,5 @@
 <template>
   <view>
-  <BackButton></BackButton>
   <uni-transition mode-class="zoom-in" :show="true" :duration="700">
   <view class="login-form-content">
       <view class="input-item flex align-center">

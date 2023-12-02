@@ -1,6 +1,5 @@
 <template>
 	<view class="container">
-        <BackButton></BackButton>
 		<view class="page-body uni-content-info">
 			<view class='cropper-content'>
 				<view v-if="isShowImg" class="uni-corpper" :style="'width:'+cropperInitW+'px;height:'+cropperInitH+'px;background:#000'">

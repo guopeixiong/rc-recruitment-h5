@@ -17,10 +17,10 @@ import { baseUrl } from '../../config';
         },
         methods: {
             goBack() {
-                if (this.backTo === '') {
+                if (this.backTo == '') {
                     this.$tab.navigateBack()
                 } else {
-                    this.$tab.reLaunch('/pages/index')
+                    this.$tab.reLaunch(this.backTo)
                 }
             }
         }

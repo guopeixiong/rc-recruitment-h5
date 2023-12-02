@@ -1,9 +1,8 @@
 <template>
     <view>
-        <BackButton></BackButton>
         <view class="no-data" v-if="data.length <= 0">
             <image src="../../../static/data_empty.png"></image>
-            <view><text>暂无报名表数据</text></view>
+            <view><text>暂无数据</text></view>
         </view>
         <uni-card :title="item.question" v-for="item in data">
             <text>{{item.answer}}</text>

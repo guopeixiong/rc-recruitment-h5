@@ -1,6 +1,5 @@
 <template>
   <view class="container">
-    <BackButton></BackButton>
     <uni-transition mode-class="zoom-in" :show="true" :duration="700">
     <view class="menu-list" style="font-size: 30rpx;">
       <view class="list-cell">

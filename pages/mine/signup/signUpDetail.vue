@@ -1,10 +1,10 @@
 <template>
     <view class="container">
-        <BackButton></BackButton>
         <uni-transition mode-class="zoom-in" :show="true" :duration="700">
             <view v-for="(item, index) in data">
                 <uni-section v-if="item.type == 0" class="content" :title="index + 1 + '.' + item.question" titleFontSize="30rpx" subTitleFontSize="30rpx">
-                    <view class="text-answer">{{item.answer ? item.answer : '未作答'}}</view>
+                    <view class="text-answer" v-if="item.answer">{{item.answer}}</view>
+                    <view class="empty-answer" v-if="!item.answer">未作答</view>
                     <view class="edit"><text @click="handleEdit(item)">点击修改</text></view>
                 </uni-section>
                 <uni-section v-if="item.type == 1" class="content" :title="index + 1 + '.' + item.question" titleFontSize="30rpx" subTitleFontSize="30rpx">

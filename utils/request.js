@@ -41,7 +41,7 @@ const request = config => {
           showConfirm('当前状态未登录，请前往登录页面登录').then(res => {
             if (res.confirm) {
               store.dispatch('LogOut').then(res => {
-                uni.reLaunch({ url: '/pages/login' })
+                uni.navigateTo({ url: '/pages/login' })
               })
             }
           })
