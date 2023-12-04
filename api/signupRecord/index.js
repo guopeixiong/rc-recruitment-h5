@@ -40,3 +40,11 @@ export function getOptions(id) {
         method: 'get'
     })
 }
+
+// 查询流程列表
+export function getProcess(id) {
+    return request({
+        url: '/h5/signUpRecord/auth/getProcessList/' + id,
+        method: 'get'
+    })
+}

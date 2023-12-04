@@ -7,8 +7,8 @@
         </view>
         </uni-transition>
         <uni-transition mode-class="zoom-in" :show="true" :duration="700">
-        <uni-card @click="handleDetail(item.id)" class="card-container" :is-shadow="false" :border="false" v-for="item in record">
-            <view class="detail"><text>查看详情 ></text></view>
+        <uni-card @click="handleDetail(item)" class="card-container" :is-shadow="false" :border="false" v-for="item in record">
+            <view class="detail"><text class="status">当前状态：{{item.currentProcess}}</text><text class="show-detail">查看详情 ></text></view>
             <view class="title">报名表</view>
             <view class="time"><text>报名时间: {{item.createTime}}</text></view>
         </uni-card>
@@ -45,8 +45,8 @@ import { getSignUpRecord } from '@/api/signupRecord/index.js'
                     }
                 })
             },
-            handleDetail(id) {
-                this.$tab.navigateTo('/pages/mine/signup/signUpDetail?id=' + id)
+            handleDetail(item) {
+                this.$tab.navigateTo('/pages/mine/signup/signUpDetail?id=' + item.id + '&statusId=' + item.currentProcessStatusId + '&processId=' + item.processId)
             }
         },
         onReachBottom() {
@@ -93,10 +93,20 @@ import { getSignUpRecord } from '@/api/signupRecord/index.js'
             color: #ffffff;
         }
         .detail {
-            text-align: right;
             margin-top: 0;
             margin-bottom: 0;
             color: #51c4c799;
+            display: flex;
+            .status {
+                flex: 2;
+                text-align: left;
+                margin-left: 0;
+            }
+            .show-detail {
+                flex: 1;
+                text-align: right;
+                margin-right: 0;
+            }
         }
     }
     .no-data {

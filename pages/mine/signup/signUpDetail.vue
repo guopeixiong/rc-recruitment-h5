@@ -1,6 +1,7 @@
 <template>
     <view class="container">
         <uni-transition mode-class="zoom-in" :show="true" :duration="700">
+            <uni-steps class="process" :options="process" active-icon="checkbox" :active="active" active-color="#51c4c7"></uni-steps>
             <view v-for="(item, index) in data">
                 <uni-section v-if="item.type == 0" class="content" :title="index + 1 + '.' + item.question" titleFontSize="30rpx" subTitleFontSize="30rpx">
                     <view class="text-answer" v-if="item.answer">{{item.answer}}</view>
@@ -63,7 +64,7 @@
 </template>
 
 <script>
-import { getSignUpRecordDetail, getQuestionUpdateTimes, updateQuestion, getOptions } from '@/api/signupRecord/index.js'
+import { getSignUpRecordDetail, getQuestionUpdateTimes, updateQuestion, getOptions, getProcess } from '@/api/signupRecord/index.js'
     export default {
         data() {
             return {
@@ -75,7 +76,9 @@ import { getSignUpRecordDetail, getQuestionUpdateTimes, updateQuestion, getOptio
                     type: 0,
                     content: ""
                 },
-                options: []
+                options: [],
+                process: [],
+                active: 0
             }
         },
         methods: {
@@ -150,6 +153,8 @@ import { getSignUpRecordDetail, getQuestionUpdateTimes, updateQuestion, getOptio
           },
           pageInit() {
             const id = this.$route.query.id
+            const statusId = this.$route.query.statusId
+            const processId = this.$route.query.processId
             getSignUpRecordDetail(id).then(res => {
                 this.data = res.data
                 this.data.forEach(record => {
@@ -157,6 +162,16 @@ import { getSignUpRecordDetail, getQuestionUpdateTimes, updateQuestion, getOptio
                         record.optAnswer = record.optAnswer.split(',')
                     }
                 })
+            })
+            getProcess(processId).then(res => {
+                for (let i = 0; i < res.data.length; i++) {
+                    if (res.data[i].id === statusId) {
+                        this.active = i
+                    }
+                    const pro = {title: res.data[i].name}
+                    this.process.push(pro)
+                }
+                console.log(this.process)
             })
           }
         },
@@ -179,6 +194,15 @@ page {
         background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
   }
 .container {
+    .process {
+        margin-top: 40rpx;
+        background-color: #fff;
+        padding: 25rpx;
+        width: 95%;
+        margin: 40rpx 20rpx;
+        border-radius: 30rpx;
+        box-shadow: 4rpx 4rpx 4rpx 4rpx #51c4c750;
+    }
     padding-bottom: 50rpx;
     .content {
         margin: 40rpx 20rpx;
