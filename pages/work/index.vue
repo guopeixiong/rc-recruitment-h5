@@ -7,7 +7,7 @@
       </view>
     <view class="img-containeralign-center justify-center flex" v-if="items.length > 0">
         <uni-transition mode-class="zoom-in" :show="true" :duration="700">
-        <image style="width: 320rpx; height: 180rpx;" src="../../static/BaoMingBiao.png"></image>
+        <image style="width: 270rpx; height: 140rpx;" src="../../static/BaoMingBiao.png"></image>
         </uni-transition>
     </view>
     <view class="content-container" v-if="items.length > 0">
@@ -192,6 +192,7 @@ import { showConfirm } from '@/utils/common'
   }
   .content-container {
     margin: 30rpx;
+    margin-top: 0;
     padding: 40rpx;
     padding-top: 0;
     background-color: #ffffff;

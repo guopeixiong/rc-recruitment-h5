@@ -83,7 +83,7 @@ import { getSignUpRecord } from '@/api/signupRecord/index.js'
             margin-top: 0;
             text-align: center;
             font-size:40rpx;
-            color: #51c4c799;
+            color: #51c4c7;
             font-weight: bold;
         }
         .time {
@@ -95,7 +95,7 @@ import { getSignUpRecord } from '@/api/signupRecord/index.js'
         .detail {
             margin-top: 0;
             margin-bottom: 0;
-            color: #51c4c799;
+            color: #51c4c7;
             display: flex;
             .status {
                 flex: 2;

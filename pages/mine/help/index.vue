@@ -1,12 +1,15 @@
 <template>
     <view>
+        <view class="icon"><image src="../../../static/qa.png"></image></view>
         <view class="no-data" v-if="data.length <= 0">
             <image src="../../../static/data_empty.png"></image>
             <view><text>暂无数据</text></view>
         </view>
-        <uni-card :title="item.question" v-for="item in data">
-            <text>{{item.answer}}</text>
-        </uni-card>
+        <view v-for="(item, index) in data" class="item-box">
+            <view class="title">{{'Q：' + item.question}}</view>
+            <view class="hr"></view>
+            <view class="answer">{{'A：' + item.answer}}</view>
+        </view>
     </view>
 </template>
 
@@ -40,6 +43,15 @@
         background-size: 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px;
         background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
     }
+    .icon {
+        width: 150rpx;
+        height: 150rpx;
+        image{
+            width: 150rpx;
+            height: 150rpx;
+        }
+        margin: 20rpx auto;
+    }
     .no-data {
       text-align: center;
       color: #33333350;
@@ -50,5 +62,26 @@
         width: 400rpx;
         height: 400rpx;
       }
+    }
+    .item-box {
+        font-size: 30rpx;
+        margin: 0 20rpx;
+        margin-bottom: 40rpx;
+        padding: 20rpx;
+        background-color: #f5f6f7;
+        border-radius: 20rpx;
+        box-shadow: 4rpx 4rpx 4rpx 4rpx #51c4c750;
+        border: #51c4c780 solid 2rpx;
+        .title {
+            
+        }
+        .hr {
+            height: 4rpx;
+            width: 100%;
+            margin: 20rpx auto;
+            background-color: #33333310;
+        }
+        .answer {
+        }
     }
 </style>

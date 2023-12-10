@@ -83,6 +83,10 @@ import { getSignUpRecordDetail, getQuestionUpdateTimes, updateQuestion, getOptio
         },
         methods: {
           handleEdit(item) {
+            if (this.active !== 0) {
+                this.$modal.msgError("当前已进入面试流程，无法修改报名表")
+                return
+            }
             this.qus.id = item.questionId
             this.qus.type = item.type
             this.qus.content = item.question
