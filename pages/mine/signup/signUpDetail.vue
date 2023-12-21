@@ -175,7 +175,6 @@ import { getSignUpRecordDetail, getQuestionUpdateTimes, updateQuestion, getOptio
                     const pro = {title: res.data[i].name}
                     this.process.push(pro)
                 }
-                console.log(this.process)
             })
           }
         },

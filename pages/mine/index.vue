@@ -26,22 +26,14 @@
     
     <view class="content-section">
     <uni-transition mode-class="zoom-in" :show="true" :duration="700">
-      <view class="mine-actions grid col-3 text-center">
+      <view class="mine-actions grid col-2 text-center">
         <view class="action-item" @click="handleSignUpRecord">
           <uni-icons type="compose" size="30" color="#51c4c7"></uni-icons>
           <text class="text">报名记录</text>
         </view>
-        <view class="action-item" @click="handleBuilding">
-          <uni-badge class="uni-badge-left-margin" :text="2" absolute="rightTop">
-            <uni-icons type="notification" size="30" color="#51c4c7"></uni-icons>
-            <text class="text">通知</text>
-          </uni-badge>
-        </view>
-        <view class="action-item" @click="handleBuilding">
-          <uni-badge class="uni-badge-left-margin" :text="2" absolute="rightTop">
-            <uni-icons type="paperplane" size="30" color="#51c4c7"></uni-icons>
-            <text class="text">咨询</text>
-          </uni-badge>
+        <view class="action-item" @click="handleConsulting">
+          <uni-icons type="paperplane" size="30" color="#51c4c7"></uni-icons>
+          <text class="text">咨询</text>
         </view>
       </view>
     </uni-transition>
@@ -133,8 +125,8 @@
       handleSignUpRecord() {
         this.$tab.navigateTo('/pages/mine/signup/signUpRecord')
       },
-      handleBuilding() {
-        this.$modal.showToast('模块建设中~')
+      handleConsulting() {
+        this.$tab.navigateTo('/pages/mine/consulting/index')
       }
     }
   }

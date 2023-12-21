@@ -85,6 +85,11 @@
         "style": {
             "navigationBarTitleText": "报名详情"
         }
+    },{
+        "path" : "pages/mine/consulting/index",
+        "style": {
+            "navigationBarTitleText": "咨询记录"
+        }
     }],
     "tabBar": {
         "color": "#707070",
