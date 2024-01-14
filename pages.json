@@ -90,6 +90,11 @@
         "style": {
             "navigationBarTitleText": "咨询记录"
         }
+    },{
+        "path": "pages/work/index",
+        "style": {
+            "navigationBarTitleText": "报名表"
+        }
     }],
     "tabBar": {
         "color": "#707070",
@@ -104,11 +109,6 @@
             "iconPath": "static/images/tabbar/home.png",
             "selectedIconPath": "static/images/tabbar/home_.png",
             "text": "首页"
-        }, {
-            "pagePath": "pages/work/index",
-            "iconPath": "static/images/tabbar/work.png",
-            "selectedIconPath": "static/images/tabbar/work_.png",
-            "text": "报名"
         }, {
             "pagePath": "pages/mine/index",
             "iconPath": "static/images/tabbar/mine.png",

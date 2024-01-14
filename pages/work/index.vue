@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import { getToken } from '@/utils/auth'
 import { getSignUpForm, submitForm } from '@/api/work/index.js'
 import { showConfirm } from '@/utils/common'
   export default {
@@ -55,15 +54,6 @@ import { showConfirm } from '@/utils/common'
     },
     methods: {
       submit() {
-        if (!getToken()) {
-            console.log('')
-            showConfirm('当前状态未登录，请登录后再报名').then(res => {
-                if (res.confirm) {
-                    uni.setStorageSync("form-cache", this.items)
-                    uni.navigateTo({ url: '/pages/login' })
-                }
-            })
-        }
         for (let i = 0; i < this.items.length; ++i) {
             if (this.items[i].answer == null || (Array.isArray(this.items[i].answer) && this.items[i].answer.length == 0)) {
                 if (this.items[i].isRequire === 1) {
@@ -95,15 +85,8 @@ import { showConfirm } from '@/utils/common'
         submitForm(data).then(res => {
             this.$modal.msgSuccess('报名成功, 可前往个人中心查看记录')
         })
-        if (uni.getStorageSync("form-cache")) {
-            uni.removeStorageSync("form-cache")
-        }
       },
       getForm() {
-        if (uni.getStorageSync("form-cache")) {
-            this.items = uni.getStorageSync("form-cache")
-            return
-        }
         getSignUpForm().then(res => {
             this.items = res.data
             this.items.forEach(e => {
@@ -149,16 +132,6 @@ import { showConfirm } from '@/utils/common'
     },
     created() {
       this.getForm()
-    },
-    onShow() {
-        if (!getToken()) {
-            console.log('')
-            showConfirm('当前状态未登录，请登录后再报名').then(res => {
-                if (res.confirm) {
-                    uni.navigateTo({ url: '/pages/login' })
-                }
-            })
-        }
     }
   }
 </script>

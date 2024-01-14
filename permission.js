@@ -9,7 +9,6 @@ const whiteList = [
   '/pages/register',
   '/pages/common/webview/index',
   '/pages/index',
-  '/pages/work/index',
   '/pages/loginByCode',
   '/pages/mine/index',
   '/pages/mine/about/index',
