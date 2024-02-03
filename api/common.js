@@ -7,3 +7,17 @@ export function getCommonQa(pageNum, pageSize) {
         method: 'get'
     })
 }
+
+export function getIndexIamge() {
+    return request({
+        url: '/h5/indexImage',
+        method: 'get'
+    })
+}
+
+export function getIndexText() {
+    return request({
+        url: '/h5/indexIntroduction',
+        method: 'get'
+    })
+}

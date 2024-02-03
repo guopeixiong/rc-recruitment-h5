@@ -8,7 +8,7 @@
         </uni-transition>
         <uni-transition mode-class="zoom-in" :show="true" :duration="700">
         <uni-card @click="handleDetail(item)" class="card-container" :is-shadow="false" :border="false" v-for="item in record">
-            <view class="detail"><text class="status">当前状态：{{item.currentProcess}}</text><text class="show-detail">查看详情 ></text></view>
+            <view class="detail"><text class="status">当前状态：{{item.processEnd === 1 ? '流程已终止' : item.currentProcess}}</text><text class="show-detail">查看详情 ></text></view>
             <view class="title">报名表</view>
             <view class="time"><text>报名时间: {{item.createTime}}</text></view>
         </uni-card>

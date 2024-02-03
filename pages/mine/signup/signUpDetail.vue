@@ -2,6 +2,9 @@
     <view class="container">
         <uni-transition mode-class="zoom-in" :show="true" :duration="700">
             <uni-steps class="process" :options="process" active-icon="checkbox" :active="active" active-color="#51c4c7"></uni-steps>
+            <view class="process-end">
+                流程已结束
+            </view>
             <view v-for="(item, index) in data">
                 <uni-section v-if="item.type == 0" class="content" :title="index + 1 + '.' + item.question" titleFontSize="30rpx" subTitleFontSize="30rpx">
                     <view class="text-answer" v-if="item.answer">{{item.answer}}</view>
