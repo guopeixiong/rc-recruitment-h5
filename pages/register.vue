@@ -13,7 +13,7 @@
       </view>
       <view class="input-item flex align-center">
         <view class="iconfont icon-youxiang icon"></view>
-        <input v-model="registerForm.email" type="text" class="input" placeholder="请输入邮箱" maxlength="20" />
+        <input v-model="registerForm.email" type="text" class="input" placeholder="请输入邮箱" maxlength="50" />
       </view>
       <view class="input-item flex align-center">
         <view class="iconfont icon-mima icon"></view>
